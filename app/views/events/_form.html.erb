@@ -50,7 +50,7 @@
   <br>
 
   <p>Notify event to others</p>
-  <%= f.collection_check_boxes :calendar_ids, Calendar.where.not(id: current_user.calendar.id), :id, :name %>
+  <%= f.collection_check_boxes :user_ids, User.where.not(id: current_user.id), :id, :username %>
 
   <div class="actions">
     <%= f.submit %>

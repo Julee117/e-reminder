@@ -1,0 +1,20 @@
+<h1><%= current_user.username %>'s Events</h1>
+<% @events.each do |event| %>
+<ul>
+  <%= link_to event.title, calendar_event_path(@calendar.name, event) %>
+  <% if event.date %>
+    <li><%= event.date.strftime("%m/%d/%Y") %></li>
+  <% end %>
+  <li><%= event.start_time.strftime("%I:%M%p") %></li>
+</ul>
+<% end %>
+
+<%= month_calendar events: @events do |date, events| %>
+  <%= date.day %>
+
+  <% events.each do |event| %>
+    <div>
+      <%= link_to event.title, calendar_event_path(@calendar.name, event) %>
+    </div>
+  <% end %>
+<% end %>
