@@ -3,6 +3,7 @@ class EventsController < ApplicationController
   before_action :set_calendar, only: [:index, :show, :edit, :new, :create, :update, :destroy]
 
   def index
+    @events = current_user.sort_by_date
   end
 
   def show
@@ -38,6 +39,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    if @event.creator == current_user.username
+      @event.destroy
+      redirect_to calendar_events_path(@calendar.name)
+    else
+      @calendar.events.delete(@event)
+      redirect_to calendar_events_path(@calendar.name)
+    end
+  end
+
   private
 
   def set_event
@@ -49,6 +60,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :note, :date, :start_time, :end_time, :creator, location_attributes: [:id, :name, :street_address, :city, :state, :zipcode], calendar_ids: [])
+    params.require(:event).permit(:title, :note, :date, :start_time, :end_time, :creator, location_attributes: [:id, :name, :street_address, :city, :state, :zipcode], user_ids: [])
   end
 end
