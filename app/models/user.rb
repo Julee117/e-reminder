@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_one :calendar
   has_many :locations
+  has_many :invites
+  has_many :events, through: :invites
 
   has_secure_password
   validates :username, presence: true
