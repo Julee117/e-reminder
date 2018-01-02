@@ -13,6 +13,31 @@ class EventsController < ApplicationController
     @location = @event.build_location
   end
 
+  def edit
+  end
+
+  def create
+    @event = Event.new(event_params)
+    if @event.save
+      @event.add_date_value
+      @event.update_creator(current_user.username)
+      @calendar.events << @event
+      @event.add_to_calendars
+      redirect_to calendar_event_path(@calendar.name, @event)
+    else
+      render :new
+    end
+  end
+
+  def update
+    if @event.update(event_params)
+      @event.add_date_value
+      redirect_to calendar_event_path(@calendar.name, @event)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def set_event
@@ -24,6 +49,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :note, :date, :start_time, :end_time, :creator, location_attributes: [:id, :name, :street_address, :city, :state, :zipcode], user_ids: [])
+    params.require(:event).permit(:title, :note, :date, :start_time, :end_time, :creator, location_attributes: [:id, :name, :street_address, :city, :state, :zipcode], calendar_ids: [])
   end
 end
