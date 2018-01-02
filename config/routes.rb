@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
+  resources :calendars, param: :name do
+    resources :events
+  end
+
+  resources :locations, only: [:show]
 end
