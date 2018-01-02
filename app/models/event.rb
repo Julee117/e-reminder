@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :invites
   has_many :users, through: :invites
 
+  validates :title, presence: true
   accepts_nested_attributes_for :location
 
   def add_date_value
