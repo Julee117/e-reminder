@@ -2,3 +2,11 @@
 
 <h2> <%= Date.today.strftime("%B %d, %Y") %></h2>
 <h3>Today's events</h3>
+<ul>
+<% @events_today.each do |event| %>
+  <li><%= event.start_time.strftime("%I:%M%p") %>: <%= link_to event.title, calendar_event_path(current_user.calendar.name, event) %></li>
+<% end %>
+</ul>
+<br>
+
+<%= link_to "Today's locations", locations_path %>
