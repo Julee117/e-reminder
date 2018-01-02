@@ -3,9 +3,6 @@
     <%= link_to "Home", users_path %>
     <%= link_to "Calendar", calendar_events_path(current_user.username) %>
     <%= link_to "Add event", new_calendar_event_path(current_user.username) %>
-    <%= form_tag({controller: 'sessions', action: 'destroy', method: 'post'}) do %>
-    <input type=submit value='logout'>
-    <% end %>
     <%= link_to "Log out", logout_path, method: "delete" %>
   <% else %>
     <%= link_to "Sign Up", signup_path %>
