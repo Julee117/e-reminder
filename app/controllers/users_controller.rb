@@ -3,15 +3,17 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
+      @calendar = @user.create_calendar(name: @user.username)
       redirect_to root_path
     else
-      redirect_to "/users/new"
+      redirect_to "/signup"
     end
   end
 
