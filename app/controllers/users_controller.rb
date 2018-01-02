@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       @calendar = @user.create_calendar(name: @user.username)
-      redirect_to root_path
+      redirect_to users_path
     else
       redirect_to "/signup"
     end
