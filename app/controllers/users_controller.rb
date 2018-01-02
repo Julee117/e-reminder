@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @events_today = current_user.today_events
   end
 
   def new
