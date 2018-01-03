@@ -1,25 +1,17 @@
 <h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@user.errors.count, "error") %>
-        prohibited this user from being saved:
-      </h2>
+<br>
+<div class="row justify-content-md-center">
+  <%= form_for @user do |f| %>
+    <%= render partial: "layouts/errors", locals: { data: @user } %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: "form-control" %><br>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %><br>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %><br>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %><br>
+    <%= f.submit "Sign Up", class: "btn btn-primary btn-xs"%>
   <% end %>
-
-  <%= f.label :username %>
-  <%= f.text_field :username %><br>
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %><br>
-  <%= f.submit "Sign Up"%>
-<% end %>
+</div>
