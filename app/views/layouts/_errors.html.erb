@@ -1,6 +1,6 @@
 <% if data.errors.any? %>
   <div id="error_explanation">
-    <h2 id="error"><%= pluralize(data.errors.count, "error") %></h2>
+    <h3 id="error"><%= pluralize(data.errors.count, "error") %></h3>
     <% data.errors.full_messages.each do |message| %>
       <%= message %><br>
     <% end %>
