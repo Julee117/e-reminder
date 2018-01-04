@@ -24,3 +24,11 @@ $(document).ready(function(){
     })
   }, 3500);
 });
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#error_explanation').fadeOut("slow", function(){
+      $(this).remove();
+    })
+  }, 4500);
+});
