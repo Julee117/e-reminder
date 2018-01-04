@@ -16,3 +16,11 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require_tree .
+
+$(document).ready(function(){
+  setTimeout(function(){
+    $('#alert_wrapper').fadeOut("slow", function(){
+      $(this).remove();
+    })
+  }, 3500);
+});
