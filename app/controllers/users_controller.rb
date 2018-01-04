@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       @calendar = @user.create_calendar(name: @user.username)
       redirect_to users_path
     else
-      redirect_to "/signup"
+      render :new
     end
   end
 
