@@ -1,14 +1,14 @@
 <nav>
   <ul class="nav justify-content-end">
   <% if logged_in? %>
-    <li class="nav-item"><%= link_to "Home", users_path, class: "nav-link" %></li>
-    <li class="nav-item"><%= link_to "Calendar", calendar_events_path(current_user.username), class: "nav-link" %></li>
-    <li class="nav-item"><%= link_to "Add event", new_calendar_event_path(current_user.username), class: "nav-link" %></li>
-    <li class="nav-item"><%= link_to "Log out", logout_path, method: "delete", class: "nav-link" %></li>
+    <li class="nav-item link"><%= link_to "Home", users_path, class: "nav-link btn btn-sm align-middle btn-outline-primary" %></li>
+    <li class="nav-item link"><%= link_to "Calendar", calendar_events_path(current_user.username), class: "nav-link btn btn-sm align-middle btn-outline-primary" %></li>
+    <li class="nav-item link"><%= link_to "Add event", new_calendar_event_path(current_user.username), class: "nav-link btn btn-sm align-middle btn-outline-primary" %></li>
+    <li class="nav-item link"><%= link_to "Log out", logout_path, method: "delete", class: "nav-link btn btn-sm align-middle btn-outline-primary" %></li>
   <% else %>
-    <li class="nav-item"><%= link_to "Sign Up", signup_path, class: "nav-link"%></li>
-    <li class="nav-item"><%= link_to "Log In", login_path, class: "nav-link" %></li>
-    <li class="nav-item"><%= link_to "Log in with Facebook", "/auth/facebook", class: "fa fa-facebook nav-link" %></li>
+    <li class="nav-item link"><%= link_to "Sign Up", signup_path, class: "nav-link btn btn-sm align-middle btn-outline-primary"%></li>
+    <li class="nav-item link"><%= link_to "Log In", login_path, class: "nav-link btn btn-sm align-middle btn-outline-primary" %></li>
+    <li class="nav-item link"><%= link_to "Log in with Facebook", "/auth/facebook", class: "fa fa-facebook-square nav-link" %></li>
   <% end %>
   </ul>
 </nav>
