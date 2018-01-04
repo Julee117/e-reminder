@@ -1,14 +1,8 @@
 <% if data.errors.any? %>
   <div id="error_explanation">
-    <h2>
-      <%= pluralize(data.errors.count, "error") %>
-      prohibited this user from being saved:
-    </h2>
-
-    <ul>
+    <h2 id="error"><%= pluralize(data.errors.count, "error") %></h2>
     <% data.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+      <%= message %><br>
     <% end %>
-    </ul>
   </div>
 <% end %>
