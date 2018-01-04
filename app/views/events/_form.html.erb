@@ -1,58 +1,57 @@
 <%= form_for [@calendar, @event] do |f| %>
-<% if @event.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@event.errors.count, "error") %> prohibited
-      this event from being saved:
-    </h2>
-
-    <ul>
-    <% @event.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+<%= render partial: "layouts/errors", locals: { data: @event } %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :note %><br>
+      <%= f.text_field :note, class: "form-control" %>
+    </div>
   </div>
-<% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= f.label :start_time %><br>
+      <%= f.datetime_select :start_time, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :end_time %><br>
+      <%= f.datetime_select :end_time, class: "form-control" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_field :note %>
-  </div>
-
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
-  </div>
-
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
-  </div>
-
   <br>
-  <h5>Location</h5>
-  <%= f.fields_for :location do |loc| %>
-    <%= loc.label :name %>
-    <%= loc.text_field :name %><br>
-    <%= loc.label :street_address %>
-    <%= loc.text_field :street_address %><br>
-    <%= loc.label :city %>
-    <%= loc.text_field :city %><br>
-    <%= loc.label :state %>
-    <%= loc.text_field :state %><br>
-    <%= loc.label :zipcode %>
-    <%= loc.text_field :zipcode %><br>
+  <h5>Pick a Location or</h5>
+  <%= f.collection_select :location_id, Location.all, :id, :name, include_blank: "" %>
+  <br><br>
+  <h5> Create a New Location</h5>
+  <%= f.fields_for :location, @event.build_location do |loc| %>
+    <div class="form-group">
+      <%= loc.label :name %>
+      <%= loc.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= loc.label :street_address %>
+      <%= loc.text_field :street_address, class: "form-control" %>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <%= loc.label :city %>
+        <%= loc.text_field :city, class: "form-control" %>
+      </div>
+    <div class="form-group col-md-4">
+      <%= loc.label :state %>
+      <%= loc.text_field :state, class: "form-control" %>
+    </div>
+    <div class="form-group col-md-2">
+      <%= loc.label :zipcode %>
+      <%= loc.text_field :zipcode, class: "form-control" %>
+    </div>
+  </div>
   <% end %>
   <br>
 
-  <p>Notify event to others</p>
-  <%= f.collection_check_boxes :user_ids, User.where.not(id: current_user.id), :id, :username %>
+  <h5>Notify event to others: <%= f.collection_check_boxes :user_ids, User.where.not(id: current_user.id), :id, :username %></h5>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.submit "Submit", class: "btn btn-primary btn-xs" %>
 <% end %>
