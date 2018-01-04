@@ -1,6 +1,18 @@
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#error {
+  text-align: center;
+}
+
+#error_explanation {
+  color: black;
+  border: 3px solid red;
+  width: 370px;
+  margin: auto;
+  text-align: left;
+  padding: 2%;
+}
 
 .event {
   background-color: white;
