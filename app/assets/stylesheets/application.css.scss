@@ -16,3 +16,20 @@
  */
 
 @import "bootstrap";
+
+#alert_wrapper {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+  background: rgba(191, 63, 127, 0.85);
+}
+
+p.alert {
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  padding: 1rem;
+  margin: 0;
+  font-weight: bold;
+}
