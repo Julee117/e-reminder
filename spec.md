@@ -25,9 +25,9 @@ Specs:
 - [x] Include third party signup/login (how e.g. Devise/OmniAuth)
   - User facebook to signup/login.
 - [x] Include nested resource show or index (URL e.g. users/2/recipes)
-  - calendars/username/events/1
+  - calendars/name/events/1
 - [x] Include nested resource "new" form (URL e.g. recipes/1/ingredients)
-  - calendars/username/events
+  - calendars/name/events
 - [x] Include form display of validation errors (form URL e.g. /recipes/new)
   - Displays validation errors if user does not fill out required fields.
 
