@@ -1,24 +1,20 @@
-# README
+#EReminder
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails app to create event notifications. These notifications can be added to your own calendar in addition to other users' calendars such as your friends, family members, etc.
 
-Things you may want to cover:
+##Getting Started
 
-* Ruby version
+```
+gem install rails
+cd e-reminder
+bundle install
+rails s
+```
 
-* System dependencies
+##Contributer's Guide
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at [https://github.com/julee117/e-reminder](https://github.com/julee117/e-reminder). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](https://www.contributor-covenant.org/) code of conduct.
 
-* Database creation
+## License
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
