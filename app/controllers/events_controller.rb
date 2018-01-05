@@ -19,7 +19,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
     if @event.save
       @event.add_attribute_values(current_user.username)
       @calendar.events << @event
