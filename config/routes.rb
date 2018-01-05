@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#facebook'
+  get '/locations/most_popular' => 'locations#popular'
   resources :calendars, param: :name do
     resources :events
   end
-  resources :locations, only: [:index]
+  resources :locations, only: [:index, :show]
 end
