@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  has_one :calendar
-  has_many :locations
-  has_many :invites
+  has_one :calendar, dependent: :destroy
+  has_many :invites, dependent: :destroy
   has_many :events, through: :invites
 
   has_secure_password
