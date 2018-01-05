@@ -1,0 +1,10 @@
+<div class="location">
+  <h2>Most Popular Locations</h2>
+  <div class="loc">
+  <ol>
+    <% @locations.each do |location| %>
+    <li class="popular"><%=link_to location.name, location_path(location) %></li>
+    <% end %>
+  </ol>
+  </div>
+</div>
