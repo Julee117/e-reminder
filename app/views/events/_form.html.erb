@@ -21,11 +21,11 @@
     </div>
   </div>
   <br>
-  <h5>Pick a Location or</h5>
+  <h5>Pick a Location</h5>
   <%= f.collection_select :location_id, Location.all, :id, :name, include_blank: "" %>
   <br><br>
-  <h5> Create a New Location</h5>
-  <%= f.fields_for :location, @event.build_location do |loc| %>
+  <h5>or Create a New Location</h5>
+  <%= f.fields_for :location do |loc| %>
     <div class="form-group">
       <%= loc.label :name %>
       <%= loc.text_field :name, class: "form-control" %>
