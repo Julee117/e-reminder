@@ -32,6 +32,7 @@ class EventsController < ApplicationController
   def update
     if @event.update(event_params)
       @event.add_date_value
+      @event.add_to_new_calendars
       redirect_to calendar_event_path(@calendar.name, @event)
     else
       render :edit
