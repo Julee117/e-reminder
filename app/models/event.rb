@@ -6,7 +6,6 @@ class Event < ApplicationRecord
   has_many :users, through: :invites
 
   validates :title, presence: true
-  validates :title, uniqueness: true
   validate :end_time_is_after_start_time
 
   def location_attributes=(location_attributes)
@@ -42,6 +41,12 @@ class Event < ApplicationRecord
   def add_to_calendars
     find_user.each do |user|
       user.calendar.events << self
+    end
+  end
+
+  def add_to_new_calendars
+    find_user.each do |user|
+      user.calendar.events << self unless user.calendar.events.include?(self)
     end
   end
 
