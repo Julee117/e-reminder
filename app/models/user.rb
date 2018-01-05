@@ -14,6 +14,7 @@ class User < ApplicationRecord
   end
 
   def today_events
-    self.calendar.events.select { |event| event.start_time.to_date == Date.today }
+    events = self.calendar.events.select { |event| event.start_time.to_date == Date.today }
+    events.sort { |a, b| a.start_time <=> b.start_time }
   end
 end
