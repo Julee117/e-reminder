@@ -6,4 +6,8 @@ class Location < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
+
+  def self.most_popular
+    joins(:events).group(:id).having("COUNT(*) > 1").order("COUNT(*) DESC").limit(5)
+  end
 end
