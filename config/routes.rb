@@ -12,4 +12,7 @@ Rails.application.routes.draw do
     resources :events
   end
   resources :locations, only: [:index, :show]
+  resources :events do
+    resources :comments
+  end 
 end
