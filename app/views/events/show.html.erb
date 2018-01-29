@@ -17,3 +17,16 @@
 
   <%= link_to 'Delete', calendar_event_path(@calendar.name, @event), method: :delete, data: {confirm: 'Are you sure?'} %>
 </div>
+<br>
+
+<%= link_to 'Add comment',  new_event_comment_path(@event), class: "btn btn-primary btn-xs" %><br><br>
+
+<% if @event.comments != [] %>
+<h2>Comments</h2>
+<div>
+  <% @event.comments.each do |comment| %>
+    <%= comment.user.username %>:<br>
+    <%= comment.content %>
+  <% end %>
+</div>
+<% end %>
