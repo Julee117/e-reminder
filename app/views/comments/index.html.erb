@@ -1,0 +1,9 @@
+<h2>Comments</h2>
+<% if @event.comments != [] %>
+  <% @event.comments.each do |comment| %>
+  <div class="comments-show">
+    <strong><%= comment.user.username %></strong>:<br>
+    <%= comment.content %>
+  </div><br>
+  <% end %>
+<% end %>
