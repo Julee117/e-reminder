@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_one :calendar, dependent: :destroy
   has_many :invites, dependent: :destroy
   has_many :events, through: :invites
+  has_many :comments
 
   has_secure_password
   validates :username, presence: true
