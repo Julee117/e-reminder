@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :calendars, through: :notifications
   has_many :invites, dependent: :destroy
   has_many :users, through: :invites
+  has_many :comments
 
   validates :title, presence: true
   validate :end_time_is_after_start_time
