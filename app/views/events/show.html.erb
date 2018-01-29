@@ -23,9 +23,9 @@
 
 <% if @event.comments != [] %>
 <h2>Comments</h2>
-<div>
+<div class="comments-show">
   <% @event.comments.each do |comment| %>
-    <%= comment.user.username %>:<br>
+    <strong><%= comment.user.username %></strong>:<br>
     <%= comment.content %>
   <% end %>
 </div>
