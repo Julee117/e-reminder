@@ -1,6 +1,8 @@
-<h1>Create Comment</h1>
+<div class="comment-form">
+<h1>Add comment</h1>
 <%= form_for [@event, @comment] do |f| %>
 <%= f.label :content %><br>
-<%= f.text_area :content, size: "60x4", placeholder: "Write a comment..." %><br>
+<%= f.text_area :content, size: "50x4", placeholder: "Write a comment..." %><br>
 <%= f.submit class: "btn btn-primary btn-xs"%>
 <% end %>
+</div>
