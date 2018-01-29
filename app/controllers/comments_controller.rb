@@ -1,6 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_event
 
+  def index
+    @comments = @event.comments
+    respond_to do |format|
+      format.html
+      format.json {render json: @comments}
+    end
+  end
+
   def new
     @comment = @event.comments.build
   end
