@@ -18,9 +18,9 @@ class CommentsController < ApplicationController
     @comment = @event.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to calendar_event_path(@calendar.name, @event)
+      render json: @comment
     else
-      render :new
+      render "events/show"
     end
   end
 
