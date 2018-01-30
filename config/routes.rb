@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#facebook'
   get '/locations/most_popular' => 'locations#popular'
   get '/calendars/:calendar_name/events/:id/next' => 'events#next'
+  get '/calendars/:calendar_name/events/:id/prev' => 'events#prev'
   resources :calendars, param: :name do
     resources :events
   end
