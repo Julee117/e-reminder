@@ -18,4 +18,13 @@ class User < ApplicationRecord
     events = self.calendar.events.select { |event| event.start_time.to_date == Date.today }
     events.sort { |a, b| a.start_time <=> b.start_time }
   end
+
+  def next(event)
+    next_event = today_events.select { |events| events.start_time > event.start_time }.first
+    if next_event
+      next_event
+    else
+      today_events.first
+    end
+  end
 end
