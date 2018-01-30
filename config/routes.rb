@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#facebook'
   get '/locations/most_popular' => 'locations#popular'
+  get '/calendars/:calendar_name/events/:id/next' => 'events#next'
   resources :calendars, param: :name do
     resources :events
   end
   resources :locations, only: [:index, :show]
   resources :events do
     resources :comments
-  end 
+  end
 end
