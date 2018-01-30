@@ -27,7 +27,10 @@
 <% end %>
 </div>
 <br>
-<%= link_to 'Comments', event_comments_path(@event), class: "all-comments btn btn-outline-primary" %><br><br>
+
+<button id="prev" class="prev-event btn btn-outline-primary">Previous Event</button>
+<%= link_to 'Comments', event_comments_path(@event), id: "commments-button", class: "all-comments btn btn-outline-primary" %>
+<button id="next" class="next-event btn btn-outline-primary" data-id="<%= @event.id %>">Next Event</button><br><br>
 
 <div class="comments">
 </div>
