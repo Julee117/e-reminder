@@ -1,7 +1,7 @@
 $(function() {
   $(".all-comments").on('click', function(e) {
     e.preventDefault();
-    $.get(this.href + ".json").success(function(response) {
+    $.get(this.href + ".json", function(response) {
       const $div = $("div.comments")
       $div.fadeToggle()
       $div.html("")
