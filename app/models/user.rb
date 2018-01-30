@@ -25,4 +25,11 @@ class User < ApplicationRecord
     next_event = sorted_events.select { |events| events.start_time > event.start_time }.first
     next_event ||= sorted_events.first
   end
+
+  def prev(event)
+    events = self.calendar.events.select { |day| day.start_time.to_date  == event.start_time.to_date}
+    sorted_events = events.sort { |a, b| b.start_time <=> a.start_time }
+    prev_event = sorted_events.select { |events| events.start_time < event.start_time }.first
+    prev_event ||= sorted_events.first
+  end
 end
