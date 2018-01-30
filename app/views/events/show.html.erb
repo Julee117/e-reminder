@@ -19,8 +19,15 @@
 </div>
 <br>
 
-<%= link_to 'Add comment', new_event_comment_path(@event), class: "btn btn-primary btn-xs" %>
-<%= link_to 'See comments', event_comments_path(@event), class: "all-comments btn btn-primary btn-xs" %><br><br>
+<div class="comment-form">
+<h3>Add comment</h3>
+<%= form_for [@event, @comment] do |f| %>
+<%= f.text_area :content, size: "60x2", placeholder: "Write a comment..." %><br>
+<%= f.submit "Submit", class: "btn btn-outline-primary"%>
+<% end %>
+</div>
+<br>
+<%= link_to 'Comments', event_comments_path(@event), class: "all-comments btn btn-outline-primary" %><br><br>
 
 <div class="comments">
 </div>
