@@ -8,6 +8,20 @@ $(function() {
       let event = newEvent.displayEvent()
       $(".show").append(event)
       $(".next-event").attr("data-id", data["id"])
+      $(".all-comments").attr("href", `/events/${data["id"]}/comments`)
+    })
+  })
+
+  $(".prev-event").on('click', function(e) {
+    e.preventDefault()
+    let id= $(this).attr('data-id')
+    $.get(`${id}/prev`, function(data) {
+      $(".show").html("")
+      let newEvent = new Event(data)
+      let event = newEvent.displayEvent()
+      $(".show").append(event)
+      $(".prev-event").attr("data-id", data["id"])
+      $(".all-comments").attr("href", `/events/${data["id"]}/comments`)
     })
   })
 })
@@ -22,6 +36,7 @@ function Event(event) {
   this.creator = event.creator
   this.users = event.users
   this.location = event.location
+  this.comments = event.comments
 }
 
 Event.prototype.convertToDate = function() {
