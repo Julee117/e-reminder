@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :next, :edit, :update, :destroy]
-  before_action :set_calendar, only: [:index, :show, :next, :edit, :new, :create, :update, :destroy]
+  before_action :set_event, only: [:show, :next, :prev, :edit, :update, :destroy]
+  before_action :set_calendar, only: [:index, :show, :edit, :new, :create, :update, :destroy]
 
   def index
     @events = current_user.sort_by_date
@@ -8,6 +8,10 @@ class EventsController < ApplicationController
 
   def show
     @comment = @event.comments.build
+    respond_to do |format|
+      format.html
+      format.json {render json: @event}
+    end
   end
 
   def new
@@ -18,6 +22,11 @@ class EventsController < ApplicationController
   def next
     @next_event = current_user.next(@event)
     render json: @next_event
+  end
+
+  def prev
+    @prev_event = current_user.prev(@event)
+    render json: @prev_event
   end
 
   def edit
