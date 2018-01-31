@@ -16,7 +16,7 @@ $(function() {
   $(document).on('click', ".show_location", function(e) {
     e.preventDefault()
     let id= $(this).attr('data-id')
-    history.pushState({}, "", `${id}`)
+    history.pushState({}, "", `/locations/${id}`)
     $.get(`/locations/${id}.json`, function(data) {
       $("#main").html("")
       let newLocation = new Location(data)
@@ -28,26 +28,26 @@ $(function() {
   $(document).on('click', '.next-location', function(e) {
     e.preventDefault()
     let id= $(this).attr('data-id')
-    $.get(`${id}/next`, function(data) {
+    $.get(`/locations/${id}/next`, function(data) {
       $("#main").html("")
       let newLocation = new Location(data)
       let locHtml = newLocation.formatShow()
       $("#main").append(locHtml)
       $(".next-location").attr("data-id", data["id"])
-      history.pushState({}, "", data["id"])
+      history.pushState({}, "", `/locations/${data['id']}`)
     })
   })
 
   $(document).on('click', '.prev-location', function(e) {
     e.preventDefault()
     let id= $(this).attr('data-id')
-    $.get(`${id}/prev`, function(data) {
+    $.get(`/locations/${id}/prev`, function(data) {
       $("#main").html("")
       let newLocation = new Location(data)
       let locHtml = newLocation.formatShow()
       $("#main").append(locHtml)
       $(".prev-location").attr("data-id", data["id"])
-      history.pushState({}, "", data["id"])
+      history.pushState({}, "", `/locations/${data['id']}`)
     })
   })
 })
