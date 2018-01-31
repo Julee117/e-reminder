@@ -13,9 +13,9 @@ class Location < ApplicationRecord
 
   def next
     locations = Location.most_popular
-    selected_loc = locations.select { |loc| loc.events.length < self.events.length }
+    selected_loc = locations.select { |loc| loc.events.length == self.events.length && loc.id > self.id }
     if selected_loc == []
-      next_location = locations.select { |loc| loc.events.length == self.events.length && loc.id > self.id }.first
+      next_location = locations.select { |loc| loc.events.length < self.events.length }.first
     else
       next_location = selected_loc.first
     end
@@ -26,7 +26,7 @@ class Location < ApplicationRecord
     locations = Location.most_popular
     selected_loc = locations.select { |loc| loc.events.length == self.events.length && loc.id < self.id }
     if selected_loc == []
-      prev_location = locations.select { |loc| loc.events.length > self.events.length }.first
+      prev_location = locations.select { |loc| loc.events.length > self.events.length }.last
     else
       prev_location = selected_loc.last
     end
