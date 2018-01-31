@@ -8,6 +8,7 @@ $(function() {
       let event = newEvent.displayEvent()
       $(".show").append(event)
       $(".next-event").attr("data-id", data["id"])
+      history.pushState(null, null, data["id"])
       $(".all-comments").attr("href", `/events/${data["id"]}/comments`)
     })
   })
@@ -21,6 +22,7 @@ $(function() {
       let event = newEvent.displayEvent()
       $(".show").append(event)
       $(".prev-event").attr("data-id", data["id"])
+      history.pushState(null, null, data["id"])
       $(".all-comments").attr("href", `/events/${data["id"]}/comments`)
     })
   })
@@ -63,7 +65,7 @@ Event.prototype.convertEndTime = function() {
 
 Event.prototype.displayAddress = function() {
   let addressHtml = `
-  <p>Address: ${this.location.street_address} ${this.location.city} ${this.location.state} ${this.location.zipcode}<p>
+  Address: ${this.location.street_address} ${this.location.city} ${this.location.state} ${this.location.zipcode}
   `
   return addressHtml
 }
@@ -89,7 +91,7 @@ Event.prototype.displayEvent = function() {
   <p>Start Time: ${this.convertStartTime()}</p>
   <p>End Time: ${this.convertEndTime()}</p>
   ${this.noteLocationName()}
-  ${this.displayAddress()}
+  <p>${this.displayAddress()}</p>
   <p>Creator: ${this.creator}</p>
   <p>Notified: ${this.getUsers()}</p>
   `
