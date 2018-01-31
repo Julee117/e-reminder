@@ -1,7 +1,7 @@
 $(function() {
   $(".popular-loc").on('click', function(e) {
     e.preventDefault()
-    history.pushState(null, null, "locations/most_popular")
+    history.pushState({}, "", "locations/most_popular")
     $.get("/locations/most_popular.json", function(response) {
       $("#main").html("")
       let $main = $("#main").append(heading())
@@ -16,7 +16,7 @@ $(function() {
   $(document).on('click', ".show_location", function(e) {
     e.preventDefault()
     let id= $(this).attr('data-id')
-    history.pushState(null, null, `${id}`)
+    history.pushState({}, "", `${id}`)
     $.get(`/locations/${id}.json`, function(data) {
       $("#main").html("")
       let newLocation = new Location(data)
@@ -34,7 +34,7 @@ $(function() {
       let locHtml = newLocation.formatShow()
       $("#main").append(locHtml)
       $(".next-location").attr("data-id", data["id"])
-      history.pushState(null, null, data["id"])
+      history.pushState({}, "", data["id"])
     })
   })
 
@@ -47,7 +47,7 @@ $(function() {
       let locHtml = newLocation.formatShow()
       $("#main").append(locHtml)
       $(".prev-location").attr("data-id", data["id"])
-      history.pushState(null, null, data["id"])
+      history.pushState({}, "", data["id"])
     })
   })
 })
