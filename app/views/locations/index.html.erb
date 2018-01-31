@@ -1,7 +1,7 @@
 <div class="location">
   <h1>Places to go today</h1>
-  <% current_user.today_events.each do |event| %>
-    <div>
+  <% @user_locations.each do |event| %>
+    <div class="event-loc">
       <%= event.start_time.strftime("%I:%M%p") %><br>
       Location: <%= event.location.name %><br>
       Address: <%= event.location.street_address %> <%= event.location.city %> <%= event.location.state %> <%= event.location.zipcode %>
@@ -10,4 +10,4 @@
 </div>
 <br>
 
-<%=link_to "Most Popular Locations", locations_most_popular_path, class: "btn btn-primary btn-xs" %>
+<%=link_to "Most Popular Locations", locations_most_popular_path, class: "popular-loc btn btn-primary btn-xs" %>
