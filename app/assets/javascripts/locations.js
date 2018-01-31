@@ -37,6 +37,19 @@ $(function() {
       history.pushState(null, null, data["id"])
     })
   })
+
+  $(document).on('click', '.prev-location', function(e) {
+    e.preventDefault()
+    let id= $(this).attr('data-id')
+    $.get(`${id}/prev`, function(data) {
+      $("#main").html("")
+      let newLocation = new Location(data)
+      let locHtml = newLocation.formatShow()
+      $("#main").append(locHtml)
+      $(".prev-location").attr("data-id", data["id"])
+      history.pushState(null, null, data["id"])
+    })
+  })
 })
 
 function Location(location) {
