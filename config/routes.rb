@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
   get '/auth/facebook/callback' => 'sessions#facebook'
-  get '/locations/most_popular' => 'locations#popular'
+  get '/most_popular' => 'locations#popular'
   get '/calendars/:calendar_name/events/:id/next' => 'events#next'
   get '/calendars/:calendar_name/events/:id/prev' => 'events#prev'
   get '/locations/:id/next' => 'locations#next'
