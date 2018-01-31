@@ -16,12 +16,25 @@ $(function() {
   $(document).on('click', ".show_location", function(e) {
     e.preventDefault()
     let id= $(this).attr('data-id')
-    history.pushState(null, null, `locations/${id}`)
+    history.pushState(null, null, `${id}`)
     $.get(`/locations/${id}.json`, function(data) {
       $("#main").html("")
       let newLocation = new Location(data)
       let locHtml = newLocation.formatShow()
       $("#main").append(locHtml)
+    })
+  })
+
+  $(document).on('click', '.next-location', function(e) {
+    e.preventDefault()
+    let id= $(this).attr('data-id')
+    $.get(`${id}/next`, function(data) {
+      $("#main").html("")
+      let newLocation = new Location(data)
+      let locHtml = newLocation.formatShow()
+      $("#main").append(locHtml)
+      $(".next-location").attr("data-id", data["id"])
+      history.pushState(null, null, data["id"])
     })
   })
 })
@@ -48,8 +61,8 @@ Location.prototype.formatShow = function() {
     <h1>${this.name}</h1>
     <p class="show">Address: ${this.street_address} ${this.city} ${this.state} ${this.zipcode}<p>
   </div><br>
-  <button id="prev-loc" class="prev-location btn btn-primary btn-xs"" data-id="${this.id}">Prev Location</button>
-  <button id="next-loc" class="next-location btn btn-primary btn-xs"" data-id="${this.id}">Next Location</button>
+  <button class="prev-location btn btn-primary btn-xs"" data-id="${this.id}">Prev Location</button>
+  <button class="next-location btn btn-primary btn-xs"" data-id="${this.id}">Next Location</button>
   `
   return showHtml
 }
