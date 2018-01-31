@@ -37,8 +37,4 @@
 <button id="next" class="next-event btn btn-outline-primary" data-id="<%= @event.id %>">Next Event</button><br><br>
 
 <div class="comments">
-  <% @comments.each do |comment| %>
-  <div class="comments-show">
-    <%= comment.user.username.capitalize%>: <%= comment.content %>
-  </div><br>
 </div>
