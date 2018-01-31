@@ -8,9 +8,20 @@ $(function() {
       response.forEach(function(location) {
         let newLocation = new Location(location)
         let locHtml = newLocation.formatPopular()
-        console.log(locHtml)
         $("div.location ol").append(locHtml)
       })
+    })
+  })
+
+  $(document).on('click', ".show_location", function(e) {
+    e.preventDefault()
+    let id= $(this).attr('data-id')
+    history.pushState(null, null, `locations/${id}`)
+    $.get(`/locations/${id}.json`, function(data) {
+      $("#main").html("")
+      let newLocation = new Location(data)
+      let locHtml = newLocation.formatShow()
+      $("#main").append(locHtml)
     })
   })
 })
@@ -26,9 +37,21 @@ function Location(location) {
 
 Location.prototype.formatPopular = function() {
   let popularHtml = `
-  <li class="popular"><a href="/location/${this.id}">${this.name}</a></li>
+  <li class="popular"><a href="/locations/${this.id}" class="show_location" data-id="${this.id}">${this.name}</a></li>
   `
   return popularHtml
+}
+
+Location.prototype.formatShow = function() {
+  let showHtml = `
+  <div class="location">
+    <h1>${this.name}</h1>
+    <p class="show">Address: ${this.street_address} ${this.city} ${this.state} ${this.zipcode}<p>
+  </div><br>
+  <button id="prev-loc" class="prev-location btn btn-primary btn-xs"" data-id="${this.id}">Prev Location</button>
+  <button id="next-loc" class="next-location btn btn-primary btn-xs"" data-id="${this.id}">Next Location</button>
+  `
+  return showHtml
 }
 
 function heading() {
