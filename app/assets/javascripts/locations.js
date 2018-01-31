@@ -1,8 +1,8 @@
 $(function() {
   $(".popular-loc").on('click', function(e) {
     e.preventDefault()
-    history.pushState({}, "", "locations/most_popular")
-    $.get("/locations/most_popular.json", function(response) {
+    history.pushState({}, "", "/most_popular")
+    $.get("/most_popular.json", function(response) {
       $("#main").html("")
       let $main = $("#main").append(heading())
       response.forEach(function(location) {
