@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment = @event.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      render json: @comment
+      render json: @comment, status: 201
     else
       render "events/show"
     end
