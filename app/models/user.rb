@@ -22,14 +22,15 @@ class User < ApplicationRecord
   def next(event)
     events = self.calendar.events.select { |day| day.start_time.to_date  == event.start_time.to_date}
     sorted_events = events.sort { |a, b| a.start_time <=> b.start_time }
-    next_event = sorted_events.select { |events| events.start_time > event.start_time }.first
+    next_event = sorted_events.select { |e| e.start_time > event.start_time }.first
     next_event ||= sorted_events.first
+
   end
 
   def prev(event)
     events = self.calendar.events.select { |day| day.start_time.to_date  == event.start_time.to_date}
-    sorted_events = events.sort { |a, b| b.start_time <=> a.start_time }
-    prev_event = sorted_events.select { |events| events.start_time < event.start_time }.first
-    prev_event ||= sorted_events.first
+    sorted_events = events.sort { |a, b| a.start_time <=> b.start_time }
+    prev_event = sorted_events.select { |e| e.start_time < event.start_time }.last
+    prev_event ||= sorted_events.last
   end
 end
