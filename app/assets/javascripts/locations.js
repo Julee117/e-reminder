@@ -74,8 +74,8 @@ Location.prototype.formatShow = function() {
     <h1>${this.name}</h1>
     <p class="show">Address: ${this.street_address} ${this.city} ${this.state} ${this.zipcode}<p>
   </div><br>
-  <button class="prev-location btn btn-primary btn-xs" "data-id="${this.id}">Prev Location</button>
-  <button class="next-location btn btn-primary btn-xs" "data-id="${this.id}">Next Location</button>
+  <button class="prev-location btn btn-primary btn-xs" data-id="${this.id}">Prev Location</button>
+  <button class="next-location btn btn-primary btn-xs" data-id="${this.id}">Next Location</button>
   `
   return showHtml
 }
