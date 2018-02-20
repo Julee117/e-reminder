@@ -34,8 +34,8 @@ function Event(event) {
   this.id = event.id
   this.title = event.title
   this.date = event.date
-  this.start_time = event.start_time
-  this.end_time = event.end_time
+  this.startTime = event.start_time
+  this.endTime = event.end_time
   this.note = event.note
   this.creator = event.creator
   this.users = event.users
@@ -52,14 +52,14 @@ Event.prototype.convertToDate = function() {
 }
 
 Event.prototype.convertStartTime = function() {
-  dateFormat = new Date(this.start_time);
+  dateFormat = new Date(this.startTime);
   timeString = dateFormat.toLocaleTimeString();
   parts = timeString.split(":");
   return `${parts[0]}:${parts[1]} ${parts[2].slice(3)}`
 }
 
 Event.prototype.convertEndTime = function() {
-  dateFormat = new Date(this.end_time);
+  dateFormat = new Date(this.endTime);
   timeString = dateFormat.toLocaleTimeString();
   parts = timeString.split(":");
   return `${parts[0]}:${parts[1]} ${parts[2].slice(3)}`
