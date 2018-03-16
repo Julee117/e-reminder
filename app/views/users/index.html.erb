@@ -1,14 +1,10 @@
 <div id="sign-index">
   <h1>Welcome <%= current_user.username.capitalize %></h1>
-
   <h3> <%= Date.today.strftime("%B %d, %Y") %></h3><br>
   <h3>Today's events</h3>
-
   <% @events_today.each do |event| %>
     <%= event.start_time.strftime("%I:%M%p") %>: <%= link_to event.title, calendar_event_path(current_user.calendar.name, event) %><br>
   <% end %>
-
   <br>
-
   <%= link_to "Today's locations", locations_path, class: "today_locations btn btn-primary btn-xs" %>
 </div>
