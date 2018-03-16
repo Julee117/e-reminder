@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         session[:user_id] = @user.id
         redirect_to users_path
       else
-        @user = User.new(email: oauth_email, username: oauth_name, password: SecureRandom.hex)
+        @user = User.new(email: oauth_email, username: oauth_name, password: SecureRandom.hex, uid: auth["uid"])
         if @user.save
           session[:user_id] = @user.id
           @calendar = @user.create_calendar(name: @user.username)
