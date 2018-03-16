@@ -13,22 +13,6 @@ $(function() {
     })
   })
 
-   // refactor to sort the popular locations
-  //   $(".popular-loc").on('click', function(e) {
-  //     e.preventDefault()
-  //     history.pushState({}, "", "/most_popular")
-  //     $.get("/most_popular.json", function(response) {
-  //       $("#main").html("")
-  //       let $main = $("#main").append(heading())
-  //       let sorted = response.sort((a, b) => a.name > b.name )
-  //       sorted.forEach(function(location) {
-  //         let newLocation = new Location(location)
-  //         let locHtml = newLocation.formatPopular()
-  //         $("div.location ol").append(locHtml)
-  //       })
-  //     })
-  //   })
-
   $(document).on('click', ".show_location", function(e) {
     e.preventDefault()
     let id= $(this).attr('data-id')
