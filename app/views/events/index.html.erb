@@ -1,10 +1,8 @@
 <div class="event">
   <h1><%= current_user.username.capitalize %>'s Events</h1>
   <br>
-
   <%= month_calendar events: @events do |date, events| %>
     <%= date.day %>
-
     <% events.each do |event| %>
       <div>
         <%= link_to event.title, calendar_event_path(@calendar.name, event) %>
