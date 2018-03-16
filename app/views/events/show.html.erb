@@ -24,11 +24,11 @@
 <br>
 
 <div class="comment-form">
-<h3>Add comment</h3>
-<%= form_for [@event, @comment] do |f| %>
-<%= f.text_area :content, size: "60x2", placeholder: "Write a comment..." %><br>
-<%= f.submit "Submit", class: "btn btn-outline-primary"%>
-<% end %>
+  <h3>Add comment</h3>
+  <%= form_for [@event, @comment] do |f| %>
+  <%= f.text_area :content, size: "60x2", placeholder: "Write a comment..." %><br>
+  <%= f.submit "Submit", class: "btn btn-outline-primary"%>
+  <% end %>
 </div>
 <br>
 
