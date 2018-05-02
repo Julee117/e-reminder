@@ -7,6 +7,17 @@ class Location < ApplicationRecord
   validates :state, presence: true
   validates :zipcode, presence: true
 
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+  def address
+    [street_address, city, state, zipcode].join(", ")
+  end
+
+  def address_changed?
+    street_address_changed? || city_changed? || state_changed? || zipcode_changed?
+  end
+
   def self.most_popular
     joins(:events).group(:id).having("COUNT(*) > 1").order("COUNT(*) DESC").limit(5)
   end
