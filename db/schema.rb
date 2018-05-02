@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119154159) do
+ActiveRecord::Schema.define(version: 20180502002851) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "calendars", force: :cascade do |t|
     t.integer "user_id"
@@ -54,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180119154159) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "longitude"
+    t.float "latitude"
   end
 
   create_table "notifications", force: :cascade do |t|
