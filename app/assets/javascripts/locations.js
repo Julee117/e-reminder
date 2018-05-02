@@ -59,6 +59,8 @@ function Location(location) {
   this.city = location.city
   this.state = location.state
   this.zipcode = location.zipcode
+  this.latitude = location.latitude
+  this.longitude = location.longitude
 }
 
 Location.prototype.formatPopular = function() {
@@ -73,6 +75,7 @@ Location.prototype.formatShow = function() {
   <div class="location">
     <h1>${this.name}</h1>
     <p class="show">Address: ${this.street_address} ${this.city} ${this.state} ${this.zipcode}<p>
+    <img src="http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=${this.latitude}%2C${this.longitude}" />
   </div><br>
   <button class="prev-location btn btn-primary btn-xs" data-id="${this.id}">Prev Location</button>
   <button class="next-location btn btn-primary btn-xs" data-id="${this.id}">Next Location</button>
